@@ -24,12 +24,6 @@ public class SellController {
         return sellService.createSell(sell);
     }
 
-
-    @PostMapping("/admin/sell")
-    public Sell createSell(@RequestBody Sell sell) {
-        return sellService.createSell(sell);
-    }
-
     @PutMapping("/admin/sell/{id}/{isPaid}")
     public Sell setIsPaidValue(@PathVariable Long id,
                                @PathVariable boolean isPaid) {
