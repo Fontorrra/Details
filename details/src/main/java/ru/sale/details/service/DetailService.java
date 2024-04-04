@@ -37,6 +37,14 @@ public class DetailService {
         return colorRepository.save(color);
     }
 
+    public Detail updateDetail(Detail detail) {
+        return detailRepository.save(detail);
+    }
+
+    public Detail getDetailById(Long id) {
+        return detailRepository.findById(id).get();
+    }
+
     public Collection<Color> getColors() {
         Collection<Color> collection = new ArrayList<>();
         colorRepository.findAll().forEach(collection::add);

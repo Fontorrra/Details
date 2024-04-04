@@ -21,7 +21,7 @@ public class Sell {
     private Detail detail;
 
     @Column(nullable = false)
-    private Long count;
+    private int count;
 
     @Column(name = "is_paid", nullable = false)
     private boolean isPaid;

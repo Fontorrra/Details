@@ -16,7 +16,7 @@ public class Purchase {
     private Detail detail;
 
     @Column(nullable = false)
-    Long count;
+    int count;
 
     @Column(nullable = false, name = "total_price")
     Integer totalPrice;
