@@ -49,11 +49,11 @@ public class SellService {
     }
 
     public Sell updateSell(Sell sell) {
-       Query query =  entityManager.createQuery("UPDATE sells e SET e.isPaid = :isPaid WHERE e.id = :id")
+        entityManager.createQuery("UPDATE sells e SET e.isPaid = :isPaid WHERE e.id = :id;")
                 .setParameter("isPaid", sell.isPaid())
                 .setParameter("id", sell.getId())
-                .setLockMode(LockModeType.PESSIMISTIC_WRITE);
-        sell = (Sell) query.getSingleResult();
+                .setLockMode(LockModeType.PESSIMISTIC_WRITE)
+               .executeUpdate();
 
         return sell;
     }
