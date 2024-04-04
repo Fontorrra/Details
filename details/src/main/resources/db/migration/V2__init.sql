@@ -7,8 +7,8 @@ CREATE TABLE details (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     color_id INT,
-    sell_price BOOLEAN NOT NULL,
-    count BOOLEAN NOT NULL,
+    sell_price INT NOT NULL,
+    count INT NOT NULL,
     FOREIGN KEY (color_id) REFERENCES colors(id)
 );
 
