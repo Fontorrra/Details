@@ -1,7 +1,7 @@
 CREATE TABLE users (
   id BIGSERIAL PRIMARY KEY,
   username VARCHAR(30) NOT NULL UNIQUE,
-  password VARCHAR(80) NOT NULL,
+  password VARCHAR(80) NOT NULL
 );
 
 
@@ -24,10 +24,10 @@ VALUES
 ('ROLE_USER'),
 ('ROLE_ADMIN');
 
-INSERT INTO users (username, password, email)
+INSERT INTO users (username, password)
 VALUES
-('user', '$2y$10$/HdiQiv9V2WK50InBLCJq.7V5C2K3VMy6gwrlFaRoz81JKfvBFW42', 'user@gmail.com'),
-('admin', '$2y$10$2L1hdvSTtxwvI1BYfeH0K.ZRigQhut8NkIx1pq/2BTmdamEzdKaYi', 'admin@gmail.com');
+('user', '$2y$10$/HdiQiv9V2WK50InBLCJq.7V5C2K3VMy6gwrlFaRoz81JKfvBFW42'),
+('admin', '$2y$10$2L1hdvSTtxwvI1BYfeH0K.ZRigQhut8NkIx1pq/2BTmdamEzdKaYi');
 
 INSERT INTO users_roles (user_id, role_id)
 VALUES
