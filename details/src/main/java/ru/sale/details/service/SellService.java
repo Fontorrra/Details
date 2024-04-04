@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.LockModeType;
 import jakarta.persistence.Query;
 import lombok.AllArgsConstructor;
+import lombok.Synchronized;
 import org.hibernate.engine.spi.SessionDelegatorBaseImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,14 +49,9 @@ public class SellService {
         return sellRepository.findById(id).get();
     }
 
+    @Synchronized
     public Sell updateSell(Sell sell) {
-        entityManager.createQuery("UPDATE sells e SET e.isPaid = :isPaid WHERE e.id = :id;")
-                .setParameter("isPaid", sell.isPaid())
-                .setParameter("id", sell.getId())
-                .setLockMode(LockModeType.PESSIMISTIC_WRITE)
-               .executeUpdate();
-
-        return sell;
+        return sellRepository.save(sell);
     }
 
     public Collection<Sell> getSells() {

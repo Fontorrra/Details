@@ -1,6 +1,7 @@
 package ru.sale.details.controller;
 ;
 import lombok.AllArgsConstructor;
+import lombok.Synchronized;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -35,6 +36,7 @@ public class SellController {
     }
 
     @PutMapping("/admin/sell/{id}/{isPaid}")
+    @Synchronized
     public ResponseEntity<?> setIsPaidValue(@PathVariable Long id,
                                @PathVariable boolean isPaid) {
 
