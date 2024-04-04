@@ -21,6 +21,9 @@ public class Sell {
     private Detail detail;
 
     @Column(nullable = false)
+    private int totalPrice;
+
+    @Column(nullable = false)
     private int count;
 
     @Column(name = "is_paid", nullable = false)

@@ -27,6 +27,7 @@ public class SellController {
         sell.setUser(userService.findByUsername(sellDto.getUsername()).get());
         sell.setDetail(sellDto.getDetail());
         sell.setCount(sellDto.getCount());
+        sell.setTotalPrice(sellDto.getTotalPrice());
         return sellService.createSell(sell);
     }
 

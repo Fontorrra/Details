@@ -12,4 +12,5 @@ public class SellDto {
     private String username;
     private Detail detail;
     private int count;
+    private int totalPrice;
 }
