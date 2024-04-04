@@ -2,9 +2,12 @@ package ru.sale.details.controller;
 ;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.sale.details.dto.SellDto;
+import ru.sale.details.exceptions.AppError;
 import ru.sale.details.models.Sell;
 import ru.sale.details.service.DetailService;
 import ru.sale.details.service.SellService;
@@ -32,12 +35,15 @@ public class SellController {
     }
 
     @PutMapping("/admin/sell/{id}/{isPaid}")
-    public Sell setIsPaidValue(@PathVariable Long id,
+    public ResponseEntity<?> setIsPaidValue(@PathVariable Long id,
                                @PathVariable boolean isPaid) {
+
         Sell sell = sellService.getSell(id);
+        if (sell.isPaid()) return new ResponseEntity<>(new AppError(HttpStatus.BAD_REQUEST.value(),
+                "Продажа уже была оплачена"), HttpStatus.BAD_REQUEST);
         sell.setPaid(isPaid);
         sellService.updateCount(sell);
-        return sellService.updateSell(sell);
+        return new ResponseEntity<>(sellService.updateSell(sell), HttpStatus.CREATED);
     }
 
     @GetMapping("/admin/sells")
