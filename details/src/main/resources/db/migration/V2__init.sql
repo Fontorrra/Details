@@ -1,5 +1,5 @@
 CREATE TABLE colors (
-    id INT PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
 
@@ -13,12 +13,12 @@ CREATE TABLE details (
 );
 
 
-INSERT INTO colors (id, name) VALUES
-(1, 'Red'),
-(2, 'Blue'),
-(3, 'Green');
+INSERT INTO colors (name) VALUES
+('Red'),
+('Blue'),
+('Green');
 
-INSERT INTO details (id, name, color_id, sell_price, count) VALUES
-(1, 'Detail1', 1, 100, 10),
-(2, 'Detail2', 2, 200, 20),
-(3, 'Detail3', 1, 150, 15);
+INSERT INTO details (name, color_id, sell_price, count) VALUES
+('Detail1', 1, 100, 10),
+('Detail2', 2, 200, 20),
+('Detail3', 1, 150, 15);
