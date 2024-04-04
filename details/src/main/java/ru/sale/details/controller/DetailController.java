@@ -21,7 +21,7 @@ public class DetailController {
         this.detailService = detailService;
     }
 
-    @GetMapping("/user/details")
+    @GetMapping("/details")
     public Collection<Detail> getDetails() {
         return detailService.getDetails();
     }
