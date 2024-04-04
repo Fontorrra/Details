@@ -1,6 +1,10 @@
 package ru.sale.details.service;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.LockModeType;
+import jakarta.persistence.Query;
 import lombok.AllArgsConstructor;
+import org.hibernate.engine.spi.SessionDelegatorBaseImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +27,7 @@ import java.util.Optional;
 public class SellService {
     SellRepository sellRepository;
     DetailRepository detailRepository;
+    EntityManager entityManager;
 
     public ResponseEntity<?> createSell(Sell sell) {
         Optional<Detail> detailOptional = detailRepository.findById(sell.getDetail().getId());
@@ -44,7 +49,13 @@ public class SellService {
     }
 
     public Sell updateSell(Sell sell) {
-        return sellRepository.save(sell);
+        Query query = entityManager.createQuery("UPDATE sells\n" +
+                "SET is_paid = " + sell.isPaid() + ",\n" +
+                "WHERE id = " + sell.getId() + ";");
+        query.setLockMode(LockModeType.PESSIMISTIC_WRITE);
+        sell = (Sell) query.getSingleResult();
+
+        return sell;
     }
 
     public Collection<Sell> getSells() {

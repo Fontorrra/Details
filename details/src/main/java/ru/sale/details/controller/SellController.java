@@ -43,7 +43,7 @@ public class SellController {
                 "Продажа уже была оплачена"), HttpStatus.BAD_REQUEST);
         sell.setPaid(isPaid);
         sellService.updateCount(sell);
-        return new ResponseEntity<>(sellService.updateSell(sell), HttpStatus.CREATED);
+        return new ResponseEntity<>(sellService.updateSell(sell), HttpStatus.OK);
     }
 
     @GetMapping("/admin/sells")
