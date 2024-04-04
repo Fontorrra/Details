@@ -20,7 +20,7 @@ public class Sell {
     @JoinColumn(name = "detail_id", nullable = false)
     private Detail detail;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "total_price")
     private int totalPrice;
 
     @Column(nullable = false)
